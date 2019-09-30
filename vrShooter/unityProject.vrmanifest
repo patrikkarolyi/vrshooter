@@ -1,0 +1,16 @@
+{
+  "source": "Unity",
+  "applications": [
+    {
+      "app_key": "application.generated.unity.vrshooter.exe",
+      "launch_type": "url",
+      "url": "steam://launch/",
+      "action_manifest_path": "D:\\projects\\unity\\vr\\mdt72t-vrshooter\\vrShooter\\actions.json",
+      "strings": {
+        "en_us": {
+          "name": "vrShooter [Testing]"
+        }
+      }
+    }
+  ]
+}
