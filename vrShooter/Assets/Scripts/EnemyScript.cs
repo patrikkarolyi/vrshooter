@@ -22,7 +22,7 @@ public class EnemyScript : MonoBehaviour
         }
         if (enabled)
         {
-            pointToShoot.GetComponent<Rigidbody>().AddForce(shootDirection, ForceMode.Impulse);
+            pointToShoot.GetComponent<Rigidbody>().AddForce(shootDirection* impactPower, ForceMode.Impulse);
         }
     }
 

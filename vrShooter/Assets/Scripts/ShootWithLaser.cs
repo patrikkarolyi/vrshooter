@@ -16,7 +16,7 @@ public class ShootWithLaser : MonoBehaviour
     public SteamVR_Input_Sources handType;
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if (SteamVR_Input.GetStateDown("InteractUI", handType))
         {
