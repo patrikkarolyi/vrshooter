@@ -1,5 +1,5 @@
-﻿
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyScript : MonoBehaviour
 {
@@ -22,6 +22,12 @@ public class EnemyScript : MonoBehaviour
         }
         if (enabled)
         {
+            Destroy(pointToShoot.GetComponentInParent<EnemyAnimator>());
+            Destroy(pointToShoot.GetComponentInParent<Animator>());
+
+            Destroy(pointToShoot.GetComponentInParent<EnemyMovement>());
+            Destroy(pointToShoot.GetComponentInParent<NavMeshAgent>());
+
             pointToShoot.GetComponent<Rigidbody>().AddForce(shootDirection* impactPower, ForceMode.Impulse);
         }
     }
