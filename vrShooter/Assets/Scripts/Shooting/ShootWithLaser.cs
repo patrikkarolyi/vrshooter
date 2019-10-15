@@ -30,6 +30,8 @@ public class ShootWithLaser : MonoBehaviour
         GameObject fire = Instantiate(fireEffect, firePointFront.transform.position, Quaternion.identity);
         Destroy(fire, 2f);
 
+        FindObjectOfType<AudioManager>().Play("ShootVoiceEffect");
+
         RaycastHit hit;
         if (Physics.Raycast(transform.position, direction, out hit))
         {
