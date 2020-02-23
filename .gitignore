@@ -35,6 +35,6 @@ sysinfo.txt
 *.apk
 *.unitypackage
 
-vrShooter/Assets/SteamVR/
+vrShooter/.idea/
 
-vrShooter/Assets/SteamVR_Input/
+vrShooter/Assets/Imported/

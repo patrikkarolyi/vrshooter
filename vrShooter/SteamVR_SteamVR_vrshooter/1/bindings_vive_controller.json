@@ -1,0 +1,68 @@
+{
+  
+  "bindings": {
+    "/actions/myinput": {
+      "chords": [],
+      "poses": [],
+      "haptics": [],
+      "sources": [
+        {
+          "path": "/user/hand/left/input/trigger",
+          "mode": "trigger",
+          "parameters": {},
+          "inputs": {
+            "click": {
+              "output": "/actions/myinput/in/shoot"
+            }
+          }
+        },
+        {
+          "path": "/user/hand/left/input/trackpad",
+          "mode": "trackpad",
+          "parameters": {},
+          "inputs": {
+            "click": {
+              "output": "/actions/myinput/in/trackpadclick"
+            },
+            "position": {
+              "output": "/actions/myinput/in/trackpadvector"
+            },
+            "touch": {
+              "output": "/actions/myinput/in/trackpadtouch"
+            }
+          }
+        },
+        {
+          "path": "/user/hand/right/input/trackpad",
+          "mode": "trackpad",
+          "parameters": {},
+          "inputs": {
+            "click": {
+              "output": "/actions/myinput/in/trackpadclick"
+            },
+            "position": {
+              "output": "/actions/myinput/in/trackpadvector"
+            },
+            "touch": {
+              "output": "/actions/myinput/in/trackpadtouch"
+            }
+          }
+        },
+        {
+          "path": "/user/hand/right/input/trigger",
+          "mode": "trigger",
+          "parameters": {},
+          "inputs": {
+            "click": {
+              "output": "/actions/myinput/in/shoot"
+            }
+          }
+        }
+      ],
+      "skeleton": []
+    }
+  },
+  "controller_type": "vive_controller",
+  "description": "",
+  "name": "Köcsög"
+}
