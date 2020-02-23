@@ -1288,10 +1288,11 @@ SkinnedMeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -4565884009001823619, guid: e7823ac03e742d0489d2bed1ed398a71, type: 3}
+  - {fileID: 2100000, guid: 5bdf315623eb2554b9585ea9a00bbbb5, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2704,10 +2705,11 @@ SkinnedMeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -840037777384891287, guid: e7823ac03e742d0489d2bed1ed398a71, type: 3}
+  - {fileID: 2100000, guid: 5bdf315623eb2554b9585ea9a00bbbb5, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3113,7 +3115,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32dd60f604c90e84aaf40ba60da53cbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  impactPower: 1500
+  impactPower: 500
 --- !u!195 &8528910943909527537
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -3151,7 +3153,7 @@ MonoBehaviour:
   cp:
   - {fileID: 8223611619742763578, guid: 4d293c8e162f3874b982baadd71153d2, type: 3}
   target: {fileID: 0}
-  bullet: {fileID: 0}
+  bullet: {fileID: 1749709875883938064, guid: 4b5f45142ac7f0c40b6a9634c16cdea9, type: 3}
 --- !u!114 &8528910943909527540
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3313,11 +3315,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 301171486851923979}
     m_Modifications:
-    - target: {fileID: 8852539195066049607, guid: 88c5a6ac3a7b9f14e8ce45887331ece6,
-        type: 3}
-      propertyPath: m_Name
-      value: SciFiGun
-      objectReference: {fileID: 0}
     - target: {fileID: 8852539195066284135, guid: 88c5a6ac3a7b9f14e8ce45887331ece6,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3372,6 +3369,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8852539195066049607, guid: 88c5a6ac3a7b9f14e8ce45887331ece6,
+        type: 3}
+      propertyPath: m_Name
+      value: SciFiGun
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 88c5a6ac3a7b9f14e8ce45887331ece6, type: 3}

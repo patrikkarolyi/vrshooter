@@ -48,5 +48,35 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: dbf4f570c909c8e4587365ffd428af6b, type: 3}
     source: {fileID: 0}
     volume: 0.605
-    pitch: 2.615
+    pitch: 1
     loop: 0
+  - name: NoAmmoVoiceEffect
+    clip: {fileID: 8300000, guid: 3c209d238d541354499a86a5881fe9bb, type: 3}
+    source: {fileID: 0}
+    volume: 0.767
+    pitch: 1
+    loop: 0
+  - name: ReloadVoiceEffect
+    clip: {fileID: 8300000, guid: fbbecb6771741764bac16efc2907741f, type: 3}
+    source: {fileID: 0}
+    volume: 0.605
+    pitch: 1
+    loop: 0
+  - name: DeathVoiceEffect
+    clip: {fileID: 8300000, guid: 3c22c1880e6f4d04a986de61978a8731, type: 3}
+    source: {fileID: 0}
+    volume: 0.605
+    pitch: 1
+    loop: 0
+  - name: bg1
+    clip: {fileID: 8300000, guid: cf5eec6ed42181d448f6a895f45c03a7, type: 3}
+    source: {fileID: 0}
+    volume: 0.605
+    pitch: 1
+    loop: 1
+  - name: bg2
+    clip: {fileID: 8300000, guid: 258924bb185cdd546ade4f3ed9431849, type: 3}
+    source: {fileID: 0}
+    volume: 0.605
+    pitch: 1
+    loop: 1
