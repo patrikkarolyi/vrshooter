@@ -5,11 +5,10 @@ public class EnemyMovement : MonoBehaviour
     public float speed = 1;
     [SerializeField] public Transform[] cp;
     [SerializeField] public Transform target;
-    [SerializeField] private GunManager gun;
+    [SerializeField] private EnemyGun enemyGun;
 
     private bool isMoving;
     private bool isShooting;
-    private bool isCpSet;
     private int cpIndex;
     private Animator m_Animator;
     private Rigidbody m_Rigidbody;
@@ -21,7 +20,6 @@ public class EnemyMovement : MonoBehaviour
     {
         isMoving = false;
         isShooting = false;
-        isCpSet = false;
         cpIndex = 0;
         m_Rigidbody = GetComponent<Rigidbody>();
         m_Animator = GetComponent<Animator>();
@@ -86,6 +84,7 @@ public class EnemyMovement : MonoBehaviour
     void FaceObject(Vector3 objectPosition)
     {
         Vector3 relativePos = objectPosition - transform.position;
+        relativePos = Vector3.ProjectOnPlane(relativePos, Vector3.up);
 
         // the second argument, upwards, defaults to Vector3.up
         Quaternion rotation = Quaternion.LookRotation(relativePos, Vector3.up);
@@ -94,7 +93,7 @@ public class EnemyMovement : MonoBehaviour
 
     void Shoot()
     {
-        gun.Shoot(target);
+        enemyGun.Shoot(target);
     }
 
     float NotSqrtDistance(Vector3 a, Vector3 b)

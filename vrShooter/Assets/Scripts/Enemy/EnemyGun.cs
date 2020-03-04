@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GunManager : MonoBehaviour
+public class EnemyGun : MonoBehaviour
 {
     [SerializeField] private float timeToHit;
     [SerializeField] private GameObject bullet;
@@ -12,14 +12,19 @@ public class GunManager : MonoBehaviour
     public void Shoot(Transform target)
     {
         GameObject projectile = Instantiate(bullet, firePoint.position, Quaternion.identity);
-        projectile.GetComponent<Rigidbody>().velocity = calculateVectorToShoot(target);
+        Vector3 vt = calculateVectorToShoot(target);
+        
+        Debug.Log(firePoint.position);
+        Debug.Log(vt*2);
+        
+        projectile.GetComponent<Rigidbody>().velocity = vt;
         Destroy(projectile, 3f);
     }
 
     private Vector3 calculateVectorToShoot(Transform target)
     {
-        Vector3 Splayer = target.position - firePoint.position;
-        Vector3 Vplayer = target.gameObject.GetComponentInParent<PlayerMovement>().direction * Time.deltaTime;
+        Vector3 Vplayer = target.gameObject.GetComponentInParent<PlayerMovement>().direction * (Time.deltaTime + 1);
+        Vector3 Splayer = target.position - firePoint.position ;
         
         //Splayer/timeToHit + Vplayer = Vbullet
         return Splayer / timeToHit + Vplayer;

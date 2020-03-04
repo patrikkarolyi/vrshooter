@@ -5,7 +5,7 @@ using Random = System.Random;
 
 public class MapManager : MonoBehaviour
 {
-    public int activeMapNum = 3;
+    public int activeMapNum = 2;
     public GameObject[] maps;
     private Random r = new Random();
     private List<GameObject> activeMaps;
