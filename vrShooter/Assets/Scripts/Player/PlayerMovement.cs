@@ -6,8 +6,8 @@ public class PlayerMovement : MonoBehaviour
 {
     public Vector3 direction = new Vector3(0,0,2);
     
-    void Update()
+    void FixedUpdate()
     {
-        transform.position += Time.deltaTime * direction;
+        transform.position += Time.fixedDeltaTime * direction;
     }
 }

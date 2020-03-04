@@ -1,74 +1,104 @@
 ﻿using UnityEngine;
-using UnityEngine.AI;
 
 public class EnemyMovement : MonoBehaviour
 {
-    [SerializeField] private Transform[] cp;
+    public float speed = 1;
+    [SerializeField] public Transform[] cp;
     [SerializeField] public Transform target;
-    
-    [SerializeField] private GameObject bullet;
-    private NavMeshAgent agent;
+    [SerializeField] private GunManager gun;
+
     private bool isMoving;
     private bool isShooting;
-    private Transform firePoint;
-    private int goalCPIndex;
+    private bool isCpSet;
+    private int cpIndex;
+    private Animator m_Animator;
+    private Rigidbody m_Rigidbody;
+    private Vector3 movementDirection;
+    private Vector3 goalPosition;
 
 
     void Awake()
     {
-        agent = GetComponent<NavMeshAgent>();
-        firePoint = transform.GetChild(2).GetChild(2).GetChild(0).GetChild(0).GetChild(2).transform;
         isMoving = false;
         isShooting = false;
-        goalCPIndex = 0;
+        isCpSet = false;
+        cpIndex = 0;
+        m_Rigidbody = GetComponent<Rigidbody>();
+        m_Animator = GetComponent<Animator>();
     }
+
 
     void Update()
     {
-
         if (isShooting)
         {
             return;
         }
-        if (!isMoving)
+        if (isMoving)
         {
-            if (goalCPIndex < cp.Length)
+            //Reached current cp
+            if (NotSqrtDistance(goalPosition, transform.position) < 1)
             {
-                agent.SetDestination(cp[goalCPIndex].position);
-                isMoving = true;
-            }
-            else
-            {
-                agent.enabled = false;
-                rotateInDirectionOfCamera();
-                InvokeRepeating("DoActionAtLastCp", 1f, 1f);
-                isShooting = true;
+                isMoving = false;
+                cpIndex++;
             }
         }
         else
         {
-            if (agent.remainingDistance <= 0)
+            //There is still cp to go
+            if (cpIndex < cp.Length)
             {
-                isMoving = false;
-                goalCPIndex++;
+                goalPosition= cp[cpIndex].position;
+                movementDirection = (goalPosition - transform.position).normalized * speed;
+                FaceObject(goalPosition);
+                m_Animator.SetFloat("speedPercent",1f);
+                isMoving = true;
+            }
+            //Final cp reached
+            else
+            {
+                m_Animator.SetFloat("speedPercent", 0f);
+                isShooting = true;
+                InvokeRepeating("Shoot", 1f, 1f);
             }
         }
     }
 
-    void rotateInDirectionOfCamera()
+
+    private void FixedUpdate()
     {
-        Vector3 relativePos = target.position - transform.position;
+        if (isMoving)
+        {
+            Move();
+        }
+
+        if (isShooting)
+        {
+            FaceObject(target.position);
+        }
+    }
+
+    private void Move()
+    {
+        m_Rigidbody.MovePosition(m_Rigidbody.position + Time.fixedDeltaTime * movementDirection);
+    }
+
+    void FaceObject(Vector3 objectPosition)
+    {
+        Vector3 relativePos = objectPosition - transform.position;
 
         // the second argument, upwards, defaults to Vector3.up
         Quaternion rotation = Quaternion.LookRotation(relativePos, Vector3.up);
         transform.rotation = rotation;
     }
 
-    void DoActionAtLastCp()
+    void Shoot()
     {
-        //TODO in gun component
-        GameObject projectile = Instantiate(bullet, firePoint.position, Quaternion.identity);
-        projectile.GetComponent<Rigidbody>().velocity = target.transform.position - firePoint.position;
-        Destroy(projectile, 3f);
+        gun.Shoot(target);
+    }
+
+    float NotSqrtDistance(Vector3 a, Vector3 b)
+    {
+        return Mathf.Pow(a.x - b.x, 2) + Mathf.Pow(a.y - b.y, 2) + Mathf.Pow(a.z - b.z, 2);
     }
 }

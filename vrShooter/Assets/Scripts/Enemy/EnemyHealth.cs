@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyScript : MonoBehaviour
+public class EnemyHealth : MonoBehaviour
 {
     [SerializeField]
     private float impactPower;
@@ -11,11 +11,11 @@ public class EnemyScript : MonoBehaviour
     void Start()
     {
         rbs = GetComponentsInChildren<Rigidbody>();
-        Ragdoll(false,transform,transform.position);
+        SetRagdoll(false,transform,transform.position);
     }
 
 
-    public void Ragdoll(bool enabled, Transform pointToShoot, Vector3 shootDirection)
+    public void SetRagdoll(bool enabled, Transform pointToShoot, Vector3 shootDirection)
     {
         if (died) return;
         
@@ -25,16 +25,14 @@ public class EnemyScript : MonoBehaviour
         }
         if (enabled)
         {
-            Destroy(pointToShoot.GetComponentInParent<EnemyAnimator>());
             Destroy(pointToShoot.GetComponentInParent<Animator>());
-
             Destroy(pointToShoot.GetComponentInParent<EnemyMovement>());
-            Destroy(pointToShoot.GetComponentInParent<NavMeshAgent>());
+
 
             pointToShoot.GetComponent<Rigidbody>().AddForce(shootDirection* impactPower, ForceMode.Impulse);
 
             died = true;
-            FindObjectOfType<EnemyManager>().OnEnemyDiedEvent();
+            //FindObjectOfType<EnemyManager>().OnEnemyDiedEvent();
         }
     }
 

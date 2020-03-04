@@ -73,10 +73,10 @@ public class ShootWithLaser : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(transform.position, direction, out hit, 100f))
         {
-            EnemyScript es = hit.transform.GetComponentInParent<EnemyScript>();
+            EnemyHealth es = hit.transform.GetComponentInParent<EnemyHealth>();
             if (es != null)
             {
-                es.Ragdoll(true, hit.transform, direction);
+                es.SetRagdoll(true, hit.transform, direction);
                 //ShowImpactEffect(direction, hit);
             }
         }
