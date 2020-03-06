@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class EnemyGun : MonoBehaviour
 {
-    [SerializeField] private float timeToHit;
     [SerializeField] private GameObject bullet;
     [SerializeField] private Transform firePoint;
     
@@ -12,11 +11,8 @@ public class EnemyGun : MonoBehaviour
     public void Shoot(Transform target)
     {
         GameObject projectile = Instantiate(bullet, firePoint.position, Quaternion.identity);
-        Vector3 vt = calculateVectorToShoot(target);
-        
-        Debug.Log(firePoint.position);
-        Debug.Log(vt*2);
-        
+        Vector3 vt = calculateVelocityToShoot(target);
+
         projectile.GetComponent<Rigidbody>().velocity = vt;
         Destroy(projectile, 3f);
     }
@@ -27,9 +23,19 @@ public class EnemyGun : MonoBehaviour
         Vector3 Splayer = target.position - firePoint.position ;
         
         //Splayer/timeToHit + Vplayer = Vbullet
-        return Splayer / timeToHit + Vplayer;
+        return Splayer / 2f + Vplayer;
 
     }
-    
+    private Vector3 calculateVelocityToShoot(Transform target)
+    {
+        Vector3 Vplayer = target.gameObject.GetComponentInParent<PlayerMovement>().direction * (Time.deltaTime + 1);
+        Vector3 Splayer = target.position - firePoint.position ;
+ 
+        //t = (TargetPos - FPPos).nmagn
+        float t = Splayer.sqrMagnitude/8;
+        
+        //Vbullet = (TargetPos - FPPos) / t + Vplayer
+        return Splayer/t + Vplayer;
+    }
     
 }

@@ -17,7 +17,7 @@ public class MapTrigger : MonoBehaviour
     {
         if (playerTransform.position.z > transform.position.z)
         {
-            mm.loadNext(playerTransform.position + new Vector3(0, 0, 20));
+            mm.loadNext(playerTransform.position + new Vector3(0, 0, 22));
             em.SpawnEnemy();
             enabled = false;
         }
